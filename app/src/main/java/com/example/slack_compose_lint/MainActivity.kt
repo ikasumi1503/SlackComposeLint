@@ -11,6 +11,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.slack_compose_lint.ui.theme.SlackcomposelintTheme
@@ -63,6 +64,22 @@ fun BadComposable() {
 @Composable
 fun BadComposable2() {
     val list = listOf(1, 2, 3)
+    LazyColumn {
+        items(list) { item ->
+            Text("Item: $item")
+        }
+    }
+}
+
+@Composable
+fun BadComposable3() {
+
+
+
+
+    val list = listOf(1, 2, 3)
+
+    var APOD:Any
     LazyColumn {
         items(list) { item ->
             Text("Item: $item")
