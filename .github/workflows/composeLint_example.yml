@@ -45,7 +45,6 @@ jobs:
             cat "$FILE"
             echo "=== sending to reviewdog ==="
             cat "$FILE" | reviewdog -f=sarif -reporter=github-pr-review -tee
-#            cat "$FILE" | reviewdog -f=sarif -reporter=github-pr-review -filter-mode=added -tee
           else
             echo "lintResults.sarif not found."
           fi
