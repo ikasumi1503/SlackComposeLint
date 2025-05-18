@@ -37,7 +37,7 @@ android {
     buildFeatures {
         compose = true
     }
-    lint {
+    lint { // TODO
         xmlReport = false
         htmlReport = false
         sarifReport = true // ✅ これを有効にする

@@ -10,7 +10,7 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
     }
-    plugins {
+    plugins { // TODO
         id("com.slack.compose.lints") version "1.4.2" // 最新版は GitHub で確認
     }
 }

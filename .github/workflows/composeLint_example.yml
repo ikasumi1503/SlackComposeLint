@@ -36,11 +36,26 @@ jobs:
         id: android-lint
         run: ./gradlew lint
       # report
-      - name: Comment PR by reviewdog
+      - name: Comment PR via reviewdog (with debug)
         if: always()
         run: |
-          find ./*/build/reports/android-lint/lintResults.sarif \
-            -type f \
-            -exec sh -c "cat {} | reviewdog -f=sarif -reporter=github-pr-review" \;
+          FILE=./app/build/reports/android-lint/lintResults.sarif
+          if [ -f "$FILE" ]; then
+            echo "=== lintResults.sarif content ==="
+            cat "$FILE"
+            echo "=== sending to reviewdog ==="
+            cat "$FILE" | reviewdog -f=sarif -reporter=github-pr-review -tee
+          else
+            echo "lintResults.sarif not found."
+          fi
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+#      - name: Comment PR by reviewdog
+#        if: always()
+#        run: |
+#          find ./*/build/reports/android-lint/lintResults.sarif \
+#            -type f \
+#            -exec sh -c "cat {} | reviewdog -f=sarif -reporter=github-pr-review" \;
+#        env:
+#          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
