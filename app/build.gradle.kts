@@ -37,6 +37,12 @@ android {
     buildFeatures {
         compose = true
     }
+    lint {
+        xmlReport = false
+        htmlReport = false
+        sarifReport = true // ✅ これを有効にする
+        sarifOutput = file("$buildDir/reports/android-lint/lintResults.sarif") // 任意（デフォルトパスと同じなら省略可）
+    }
 }
 
 dependencies {
