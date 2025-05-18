@@ -59,3 +59,13 @@ fun BadComposable() {
         }
     }
 }
+
+@Composable
+fun BadComposable2() {
+    val list = listOf(1, 2, 3)
+    LazyColumn {
+        items(list) { item ->
+            Text("Item: $item")
+        }
+    }
+}
