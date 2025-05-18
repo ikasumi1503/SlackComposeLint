@@ -40,7 +40,7 @@ jobs:
         run: |
           FILE=app/build/reports/android-lint/lintResults.sarif
           if [ -f "$FILE" ]; then
-            cat "$FILE" | reviewdog -f=sarif -reporter=github-pr-check -filter-mode=nofilter -tee -fail-on-error=false || true
+            cat "$FILE" | reviewdog -f=sarif -reporter=github-pr-review -filter-mode=nofilter -tee -fail-on-error=false || true
           else
             echo "SARIF not found"
           fi
