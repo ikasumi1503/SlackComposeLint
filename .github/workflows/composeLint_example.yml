@@ -32,16 +32,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
       # android lintを実行
-      - name: Android Lint
-        id: android-lint
+      - name: Run Android Lint
         run: ./gradlew lint
-      # report
-      - name: Comment PR via reviewdog (with debug)
-        if: always()
+
+      - name: Comment via reviewdog
         run: |
-          FILE=./app/build/reports/android-lint/lintResults.sarif
-          if [ -f "$FILE" ]; then
-            cat "$FILE" | reviewdog -f=sarif -reporter=github-pr-review -filter-mode=added -tee
-          fi
+          cat app/build/reports/android-lint/lintResults.sarif \
+            | reviewdog -f=sarif -reporter=github-pr-check -filter-mode=nofilter -tee
         env:
           REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
