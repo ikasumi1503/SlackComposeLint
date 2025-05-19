@@ -37,16 +37,9 @@ android {
     buildFeatures {
         compose = true
     }
-    lint { // TODO
-        xmlReport = false
-        htmlReport = false
-        sarifReport = true // ✅ これを有効にする
-        sarifOutput = file("$buildDir/reports/android-lint/lintResults.sarif") // 任意（デフォルトパスと同じなら省略可）
-    }
 }
 
 dependencies {
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -62,4 +55,5 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    lintChecks(libs.compose.lint.checks) // TODO
 }

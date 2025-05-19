@@ -3,7 +3,7 @@ name: Pull Request Check
 on: [pull_request]
 
 env:
-  JAVA_VERSION: 17 # gradleに対応するものを選ぶ
+  JAVA_VERSION: 17
   GRADLE_VERSION: 8.2
 
 permissions:
@@ -31,7 +31,6 @@ jobs:
           reviewdog_version: latest
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
-      # android lintを実行
       - name: Run Android Lint
         run: ./gradlew lint
 
